@@ -32,9 +32,8 @@ def run():
     sys.path.append(_mytardis_install_dir)
     for egg in os.listdir(os.path.join(_mytardis_install_dir, "eggs")):
         sys.path.append(os.path.join(_mytardis_install_dir, "eggs", egg))
-    from django.core.management import setup_environ
-    from tardis import settings
-    setup_environ(settings)
+
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", 'tardis.settings')
 
     from tardis.tardis_portal.models import UserAuthentication
     from tastypie.models import ApiKey
